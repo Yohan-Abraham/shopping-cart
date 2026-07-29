@@ -2,13 +2,16 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 2em 3em;
-  box-shadow: 1px 1px 8px black;
+  padding: 2em 10em;
+  box-shadow: 1px 1px 8px grey;
+  background-color: white;
+  z-index: 2;
 }
 
 .navLinks {
   padding-left: 2em;
   text-decoration: none;
   font-size: larger;
+  background-color: white;
   color: black;
 }

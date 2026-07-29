@@ -1,7 +1,7 @@
 export default function Cart() {
   return (
-    <>
-      <h1>cart</h1>
-    </>
+    <section>
+      <div></div>
+    </section>
   );
 }
