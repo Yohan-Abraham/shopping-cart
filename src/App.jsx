@@ -54,50 +54,68 @@ function App() {
   }
 
   function handleIncreaseQuantity(title) {
-    setStoreData((currentData) =>
-      currentData.map((item) =>
-        item.title === title
-          ? {
-              ...item,
-              quantity: item.quantity + 1,
-            }
-          : item,
-      ),
-    );
+    const newData = storeData.map((item) => {
+      if (title == item.title) {
+        return {
+          ...item,
+          quantity: item.quantity + 1,
+        };
+      }
+      return item;
+    });
+    setStoreData(newData);
 
-    setInCart((currentCart) =>
-      currentCart.map((item) =>
-        item.title === title
-          ? {
-              ...item,
-              quantity: item.quantity + 1,
-            }
-          : item,
-      ),
+    setActiveCategory({
+      category: activeCategory.category,
+      data:
+        activeCategory.category === 'All'
+          ? newData
+          : newData.filter((item) => item.category === activeCategory.category),
+    });
+
+    setInCart(
+      inCart.map((item) => {
+        if (item.title == title) {
+          return {
+            ...item,
+            quantity: item.quantity + 1,
+          };
+        }
+        return item;
+      }),
     );
   }
 
   function handleDecreaseQuantity(title) {
-    setStoreData((currentData) =>
-      currentData.map((item) =>
-        item.title === title
-          ? {
-              ...item,
-              quantity: item.quantity - 1,
-            }
-          : item,
-      ),
-    );
+    const newData = storeData.map((item) => {
+      if (title == item.title) {
+        return {
+          ...item,
+          quantity: item.quantity - 1,
+        };
+      }
+      return item;
+    });
+    setStoreData(newData);
 
-    setInCart((currentCart) =>
-      currentCart.map((item) =>
-        item.title === title
-          ? {
-              ...item,
-              quantity: item.quantity - 1,
-            }
-          : item,
-      ),
+    setActiveCategory({
+      category: activeCategory.category,
+      data:
+        activeCategory.category === 'All'
+          ? newData
+          : newData.filter((item) => item.category === activeCategory.category),
+    });
+
+    setInCart(
+      inCart.map((item) => {
+        if (item.title == title) {
+          return {
+            ...item,
+            quantity: item.quantity - 1,
+          };
+        }
+        return item;
+      }),
     );
   }
 
@@ -119,7 +137,7 @@ function App() {
 
   return (
     <>
-      <NavBar />
+      <NavBar itemsInCart={inCart.length} />
       <Outlet
         context={{
           storeData,
