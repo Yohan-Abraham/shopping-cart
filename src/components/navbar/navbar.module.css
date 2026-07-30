@@ -18,3 +18,7 @@
 .navLinks:hover {
   color: gray;
 }
+
+.navContainer {
+  background-color: white;
+}

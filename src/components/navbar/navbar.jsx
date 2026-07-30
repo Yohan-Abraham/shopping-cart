@@ -5,7 +5,7 @@ export function NavBar({ itemsInCart }) {
   return (
     <nav className={styles.nav}>
       <div className={styles.navLinks}>Shopping Cart</div>
-      <div>
+      <div className={styles.navContainer}>
         <Link className={styles.navLinks} to="/">
           Home
         </Link>
