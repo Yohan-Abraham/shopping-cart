@@ -23,6 +23,48 @@ function App() {
     });
   }
 
+  function handleIncreaseQuantity(title) {
+    const newData = storeData.map((item) => {
+      if (title == item.title) {
+        return {
+          ...item,
+          quantity: item.quantity + 1,
+        };
+      }
+      return item;
+    });
+    setStoreData(newData);
+
+    setActiveCategory({
+      category: activeCategory.category,
+      data:
+        activeCategory.category === 'All'
+          ? newData
+          : newData.filter((item) => item.category === activeCategory.category),
+    });
+  }
+
+  function handleDecreaseQuantity(title) {
+    const newData = storeData.map((item) => {
+      if (title == item.title) {
+        return {
+          ...item,
+          quantity: item.quantity - 1,
+        };
+      }
+      return item;
+    });
+    setStoreData(newData);
+
+    setActiveCategory({
+      category: activeCategory.category,
+      data:
+        activeCategory.category === 'All'
+          ? newData
+          : newData.filter((item) => item.category === activeCategory.category),
+    });
+  }
+
   useEffect(() => {
     async function loadData() {
       const data = await organizeData();
@@ -48,6 +90,8 @@ function App() {
           categories,
           activeCategory,
           handleActiveCategory,
+          handleIncreaseQuantity,
+          handleDecreaseQuantity,
         }}
       />
     </>

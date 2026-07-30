@@ -3,10 +3,16 @@ import styles from './shop.module.css';
 import Card from '../../components/card/card';
 
 export default function Shop() {
-  const { storeData, categories, activeCategory, handleActiveCategory } =
-    useOutletContext();
+  const {
+    storeData,
+    categories,
+    activeCategory,
+    handleActiveCategory,
+    handleIncreaseQuantity,
+    handleDecreaseQuantity,
+  } = useOutletContext();
   console.log(activeCategory.data);
-  if (!categories || !storeData) {
+  if (!categories || !storeData | !activeCategory.data) {
     return <h1>loading...</h1>;
   }
 
@@ -30,7 +36,9 @@ export default function Shop() {
               title={item.title}
               price={item.price}
               image={item.image}
-              rating={item.rating}
+              quantity={item.quantity}
+              handleIncreaseQuantity={handleIncreaseQuantity}
+              handleDecreaseQuantity={handleDecreaseQuantity}
             />
           );
         })}

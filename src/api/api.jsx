@@ -14,7 +14,7 @@ export default async function organizeData() {
       title: data[i].title,
       price: data[i].price,
       image: data[i].image,
-      rating: data[i].rating.rate,
+      quantity: 1,
     });
   }
   return clothing;

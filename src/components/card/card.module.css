@@ -41,3 +41,9 @@ button {
   border: 1px solid black;
   border-radius: 10px;
 }
+
+.quantity {
+  display: flex;
+  gap: 1em;
+  align-items: center;
+}
