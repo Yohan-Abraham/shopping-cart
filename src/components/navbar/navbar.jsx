@@ -4,9 +4,7 @@ import styles from './navbar.module.css';
 export function NavBar() {
   return (
     <nav className={styles.nav}>
-      <Link className={styles.navLinks} to="/">
-        Shopping Cart
-      </Link>
+      <div className={styles.navLinks}>Shopping Cart</div>
       <div>
         <Link className={styles.navLinks} to="/">
           Home

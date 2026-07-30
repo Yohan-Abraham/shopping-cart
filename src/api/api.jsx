@@ -9,6 +9,7 @@ export default async function organizeData() {
   const clothing = [];
   for (let i = 0; i < data.length; i++) {
     clothing.push({
+      id: data[i].id,
       category: data[i].category,
       title: data[i].title,
       price: data[i].price,

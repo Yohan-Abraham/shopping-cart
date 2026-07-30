@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 2em 10em;
-  box-shadow: 1px 1px 8px grey;
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.05);
   background-color: white;
   z-index: 2;
 }
@@ -13,5 +13,4 @@
   text-decoration: none;
   font-size: larger;
   background-color: white;
-  color: black;
 }
