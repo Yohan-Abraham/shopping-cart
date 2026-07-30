@@ -4,16 +4,15 @@ import Card from '../../components/card/card';
 
 export default function Shop() {
   const {
-    storeData,
     categories,
     activeCategory,
     handleActiveCategory,
     handleIncreaseQuantity,
     handleDecreaseQuantity,
+    handleCartAddition,
   } = useOutletContext();
-  console.log(activeCategory.data);
-  if (!categories || !storeData | !activeCategory.data) {
-    return <h1>loading...</h1>;
+  if (!categories || !activeCategory.data) {
+    return <section className={styles.shop}>Loading...</section>;
   }
 
   return (
@@ -39,6 +38,8 @@ export default function Shop() {
               quantity={item.quantity}
               handleIncreaseQuantity={handleIncreaseQuantity}
               handleDecreaseQuantity={handleDecreaseQuantity}
+              handleCartAddition={handleCartAddition}
+              type="shop"
             />
           );
         })}

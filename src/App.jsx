@@ -8,7 +8,37 @@ function App() {
   const [storeData, setStoreData] = useState();
   const [categories, setCategories] = useState();
   const [activeCategory, setActiveCategory] = useState({});
+  const [inCart, setInCart] = useState([]);
+  const totalCheckoutPrice = inCart.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0,
+  );
 
+  function handleCartAddition(title, price, image, quantity) {
+    setInCart((currentCart) => {
+      const alreadyInCart = currentCart.some((item) => item.title === title);
+
+      if (alreadyInCart) {
+        return currentCart;
+      }
+
+      return [
+        ...currentCart,
+        {
+          title,
+          price,
+          image,
+          quantity,
+        },
+      ];
+    });
+  }
+
+  function handleCartRemoval(title) {
+    setInCart((currentCart) =>
+      currentCart.filter((item) => item.title !== title),
+    );
+  }
   function handleActiveCategory(category) {
     if (category == 'All') {
       return setActiveCategory({
@@ -24,45 +54,51 @@ function App() {
   }
 
   function handleIncreaseQuantity(title) {
-    const newData = storeData.map((item) => {
-      if (title == item.title) {
-        return {
-          ...item,
-          quantity: item.quantity + 1,
-        };
-      }
-      return item;
-    });
-    setStoreData(newData);
+    setStoreData((currentData) =>
+      currentData.map((item) =>
+        item.title === title
+          ? {
+              ...item,
+              quantity: item.quantity + 1,
+            }
+          : item,
+      ),
+    );
 
-    setActiveCategory({
-      category: activeCategory.category,
-      data:
-        activeCategory.category === 'All'
-          ? newData
-          : newData.filter((item) => item.category === activeCategory.category),
-    });
+    setInCart((currentCart) =>
+      currentCart.map((item) =>
+        item.title === title
+          ? {
+              ...item,
+              quantity: item.quantity + 1,
+            }
+          : item,
+      ),
+    );
   }
 
   function handleDecreaseQuantity(title) {
-    const newData = storeData.map((item) => {
-      if (title == item.title) {
-        return {
-          ...item,
-          quantity: item.quantity - 1,
-        };
-      }
-      return item;
-    });
-    setStoreData(newData);
+    setStoreData((currentData) =>
+      currentData.map((item) =>
+        item.title === title
+          ? {
+              ...item,
+              quantity: item.quantity - 1,
+            }
+          : item,
+      ),
+    );
 
-    setActiveCategory({
-      category: activeCategory.category,
-      data:
-        activeCategory.category === 'All'
-          ? newData
-          : newData.filter((item) => item.category === activeCategory.category),
-    });
+    setInCart((currentCart) =>
+      currentCart.map((item) =>
+        item.title === title
+          ? {
+              ...item,
+              quantity: item.quantity - 1,
+            }
+          : item,
+      ),
+    );
   }
 
   useEffect(() => {
@@ -92,6 +128,10 @@ function App() {
           handleActiveCategory,
           handleIncreaseQuantity,
           handleDecreaseQuantity,
+          handleCartAddition,
+          inCart,
+          handleCartRemoval,
+          totalCheckoutPrice,
         }}
       />
     </>

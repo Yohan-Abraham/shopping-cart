@@ -7,6 +7,9 @@ export default function Card({
   quantity,
   handleIncreaseQuantity,
   handleDecreaseQuantity,
+  handleCartAddition,
+  handleCartRemoval,
+  type,
 }) {
   return (
     <div className={styles.card}>
@@ -27,7 +30,15 @@ export default function Card({
           Quantity: {quantity}
           <button onClick={() => handleIncreaseQuantity(title)}>+</button>
         </div>
-        <button>Add To Cart</button>
+        {type == 'shop' ? (
+          <button
+            onClick={() => handleCartAddition(title, price, image, quantity)}
+          >
+            Add To Cart
+          </button>
+        ) : (
+          <button onClick={() => handleCartRemoval(title)}>Remove Item</button>
+        )}
       </div>
     </div>
   );

@@ -1,0 +1,31 @@
+.cart {
+  padding: 4em 13em;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1em;
+}
+
+.cartContainer {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-template-rows: auto;
+}
+
+.itemBreakDown,
+.totalPrice {
+  padding: 1em;
+  display: grid;
+  grid-template-columns: 5fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0.5em;
+}
+
+.priceBreakDown {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.itemPrice {
+  grid-column: 2;
+  grid-row: 2;
+}

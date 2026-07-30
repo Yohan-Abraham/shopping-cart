@@ -14,3 +14,7 @@
   font-size: larger;
   background-color: white;
 }
+
+.navLinks:hover {
+  color: gray;
+}
