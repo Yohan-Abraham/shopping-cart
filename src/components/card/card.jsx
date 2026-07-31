@@ -21,6 +21,7 @@ export default function Card({
         <h4>${price}</h4>
         <div className={styles.quantity}>
           <button
+            aria-label="decrease quantity"
             onClick={() => {
               if (quantity !== 0) return handleDecreaseQuantity(title);
             }}
@@ -28,7 +29,12 @@ export default function Card({
             -
           </button>
           Quantity: {quantity}
-          <button onClick={() => handleIncreaseQuantity(title)}>+</button>
+          <button
+            aria-label="increase quantity"
+            onClick={() => handleIncreaseQuantity(title)}
+          >
+            +
+          </button>
         </div>
         {type == 'shop' ? (
           <button

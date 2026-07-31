@@ -39,17 +39,20 @@ export default function Cart() {
         {inCart.map((item) => {
           return (
             <div key={item.title} className={styles.itemBreakDown}>
-              <div>{item.title}</div>
-              <div className={styles.priceBreakDown}>
+              <div data-testid="product title">{item.title}</div>
+              <div
+                className={styles.priceBreakDown}
+                data-testid="price breakdown"
+              >
                 {item.quantity} x {item.price}
               </div>
-              <div className={styles.itemPrice}>
+              <div className={styles.itemPrice} data-testid="item price">
                 ${(item.quantity * item.price).toFixed()}
               </div>
             </div>
           );
         })}
-        <div className={styles.totalPrice}>
+        <div className={styles.totalPrice} data-testid="checkout price">
           Total Price <div>${totalCheckoutPrice.toFixed()}</div>
         </div>
       </div>
